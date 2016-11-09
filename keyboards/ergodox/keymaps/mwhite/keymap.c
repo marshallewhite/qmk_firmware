@@ -6,49 +6,50 @@
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
 #define QWRT 3 // qwerty layer
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |  Caps  |   1  |   2  |   3  |   4  |   5  |OSM-HY|           |   '  |   6  |   7  |   8  |   9  |   0  |   -    |
+ * |  Caps  |   1  |   2  |   3  |   4  |   5  |OSM-HY|           | Play |   6  |   7  |   8  |   9  |   0  |   -    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |MDIAShft|   Q  |   W  |   F  |   P  |   G  |  L0  |           |  L1  |   J  |   L  |   U  |   Y  |   ;  |MDIAShft|
+ * |MDIAShft|   Q  |   W  |   F  |   P  |   G  |Option|           | Next |   J  |   L  |   U  |   Y  |   ;  |   =    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |SYMBShft|   A  |   R  |   S  |   T  |   D  |------|           |------|   H  |   N  |   E  |   I  |   O  |SYMBShft|
- * |--------+------+------+------+------+------|  L2  |           |  L3  |------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |//Ctrl| RShift |
+ * |SYMBShft|   A  |   R  |   S  |   T  |   D  |------|           |------|   H  |   N  |   E  |   I  |   O  |   \    |
+ * |--------+------+------+------+------+------|Sptlgt|           | Prev |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   K  |   M  |   ,  |   .  |//Ctrl|   '    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LCtrl| Left |  Up | Down | Right |                                       |   [  |   ]  |   (  |   )  | Undo |
+ *   |ApSwtc| LCtrl| Left | Right| LGui |                                       |   [  |   ]  |   (  |   )  | Undo |
  *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,---------------.
- *                                        | Tab  |ApSwtch|      | Cut  |Ctrl/Esc|
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      |Hm/Shft|      | Copy |        |      |
- *                                 | Bksp |  Del |------|       |------|  Enter | Space|
- *                                 |      |      |End/LGui|     | Paste|        |      |
- *                                 `--------------------'       `----------------------'
+ *                                        ,--------------.       ,--------------.
+ *                                        |Tb/Sft|   Up  |      | Cut  |Ctrl/Esc|
+ *                                 ,------|------|-------|      |------+--------+------.
+ *                                 |      |      |  Down |      | Copy |        |      |
+ *                                 | Bksp |  Del |-------|      |------|  Enter | Space|
+ *                                 |      |      |  LGui |      | Paste|        |      |
+ *                                 `---------------------'      `----------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
 [BASE] = KEYMAP(  // layer 0 : default
         // left hand
-        KC_CAPS,        KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   OSM(MOD_HYPR),
-        MO(MDIA),       KC_Q,         KC_W,   KC_F,   KC_P,   KC_G,   TO(BASE),
-        MO(SYMB),       KC_A,         KC_R,   KC_S,   KC_T,   KC_D,
-        KC_LSFT,        KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   TO(MDIA),
-        KC_LCTL,        KC_LEFT,      KC_UP,  KC_DOWN,        KC_RGHT,
-                                                              KC_TAB, M(0),
-                                                                      SFT_T(KC_HOME),
-                                                     KC_BSPC,  KC_DEL,GUI_T(KC_END),
+        KC_CAPS,        KC_1,       KC_2,   KC_3,   KC_4,   KC_5,   OSM(MOD_HYPR),
+        MO(MDIA),       KC_Q,       KC_W,   KC_F,   KC_P,   KC_G,   KC_LALT,
+        MO(SYMB),       KC_A,       KC_R,   KC_S,   KC_T,   KC_D,
+        KC_LSFT,        KC_Z,       KC_X,   KC_C,   KC_V,   KC_B,   M(1),
+        M(0),           KC_LCTRL,   KC_LEFT,KC_RGHT,KC_LGUI,
+                                                     SFT_T(KC_TAB), KC_UP,
+                                                                      KC_DOWN,
+                                                     KC_BSPC,  KC_DEL,KC_LGUI,
         // right hand
-             KC_QUOT,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
-             TO(SYMB),    KC_J,   KC_L,   KC_U,   KC_Y,   KC_SCLN,          MO(MDIA),
-                          KC_H,   KC_N,   KC_E,   KC_I,   KC_O,             MO(SYMB),
-             TO(QWRT),KC_K,   KC_M,   KC_COMM,KC_DOT, CTL_T(KC_SLSH),       KC_RSFT,
+             KC_MPLY,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
+             KC_MNXT,    KC_J,   KC_L,   KC_U,   KC_Y,   KC_SCLN,          KC_EQL,
+                          KC_H,   KC_N,   KC_E,   KC_I,   KC_O,             KC_BSLS,
+             KC_MPRV,KC_K,   KC_M,   KC_COMM,KC_DOT, CTL_T(KC_SLSH),       KC_QUOT,
                                   KC_LBRC,KC_RBRC,KC_LPRN,KC_RPRN,          KC_UNDO,
-             KC_CUT,      CTL_T(KC_ESC),
-             KC_COPY,
-             KC_PASTE,    KC_ENT, KC_SPC
+             M(2),      CTL_T(KC_ESC),
+             M(3),
+             M(4),    KC_ENT, KC_SPC
     ),
 /* Keymap 1: Symbol Layer
  *
@@ -172,6 +173,38 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           unregister_code(KC_TAB);
         } else {
           unregister_code(KC_LGUI);
+        }
+        break;
+        case 1:
+        if (record->event.pressed) {
+          register_code(KC_LGUI);
+          register_code(KC_SPC);
+          unregister_code(KC_LGUI);
+          unregister_code(KC_SPC);
+        }
+        break;
+        case 2:
+        if (record->event.pressed) {
+          register_code(KC_LGUI);
+          register_code(KC_X);
+          unregister_code(KC_LGUI);
+          unregister_code(KC_X);
+        }
+        break; 
+        case 3:
+        if (record->event.pressed) {
+          register_code(KC_LGUI);
+          register_code(KC_C);
+          unregister_code(KC_LGUI);
+          unregister_code(KC_C);
+        }
+        break; 
+        case 4:
+        if (record->event.pressed) {
+          register_code(KC_LGUI);
+          register_code(KC_V);
+          unregister_code(KC_LGUI);
+          unregister_code(KC_V);
         }
         break;
       }
