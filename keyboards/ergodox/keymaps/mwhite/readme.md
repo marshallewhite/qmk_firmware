@@ -1,4 +1,4 @@
-# ErgoDox EZ Colemak Configuration
+# ErgoDox Colemak
 
-Colemak layout with same layers as default ergodox ez keymap.
+Colemak layout for macOS. Base layer, symbol layer, media layer, QWERTY layer.
 
