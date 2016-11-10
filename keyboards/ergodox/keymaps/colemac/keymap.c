@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |ApSwtc| LCtrl| Left | Right| LGui |                                       |   [  |   ]  |   (  |   )  | Undo |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,--------------.       ,--------------.
- *                                        |Tb/Sft|   Up  |      | Cut  |Ctrl/Esc|
+ *                                        |Sh/Esc|   Up  |      | Cut  |Ctrl/Tab|
  *                                 ,------|------|-------|      |------+--------+------.
  *                                 |      |      |  Down |      | Copy |        |      |
  *                                 | Bksp |  Del |-------|      |------|  Enter | Space|
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(SYMB),       KC_A,       KC_R,   KC_S,   KC_T,   KC_D,
         KC_LSFT,        KC_Z,       KC_X,   KC_C,   KC_V,   KC_B,   M(1),
         M(0),           KC_LCTRL,   KC_LEFT,KC_RGHT,KC_LGUI,
-                                                     SFT_T(KC_TAB), KC_UP,
+                                                     SFT_T(KC_ESC), KC_UP,
                                                                       KC_DOWN,
                                                      KC_BSPC,  KC_DEL,KC_LGUI,
         // right hand
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           KC_H,   KC_N,   KC_E,   KC_I,   KC_O,             KC_BSLS,
              KC_MPRV,KC_K,   KC_M,   KC_COMM,KC_DOT, CTL_T(KC_SLSH),       KC_QUOT,
                                   KC_LBRC,KC_RBRC,KC_LPRN,KC_RPRN,          KC_UNDO,
-             M(2),      CTL_T(KC_ESC),
+             M(2),      CTL_T(KC_TAB),
              M(3),
              M(4),    KC_ENT, KC_SPC
     ),
