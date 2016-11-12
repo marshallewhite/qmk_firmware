@@ -7,6 +7,10 @@
 #define MDIA 2 // media keys
 #define QWRT 3 // qwerty layer
 
+enum {
+  TD_N_COLN = 0
+};
+    
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  * OSM-Hyper = One Shot Modifier (HYPER)
@@ -17,11 +21,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|---------'        |------+------+------+------+------+------+--------|
  * |MDIAShft|   Q  |   W  |   F  |   P  |   G  |Option|           | Next |   J  |   L  |   U  |   Y  |   ;  |   =    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |SYMBShft|   A  |   R  |   S  |   T  |   D  |------|           |------|   H  |   N  |   E  |   I  |   O  |   \    |
+ * |SYMBShft|   A  |   R  |   S  |   T  |   D  |------|           |------|   H  |  N/: |   E  |   I  |   O  |   \    |
  * |--------+------+------+------+------+------|Spot  |           | Prev |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |Light |           |      |   K  |   M  |   ,  |   .  |//Ctrl|   '    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |ApSwtc| LCtrl| Left | Right| LGui |                                       |   [  |   ]  |   (  |   )  | Undo |
+ *   |ApSwtc| LCtrl| Left | Right| LGui |                                       | Left | Down |  Up  | Right| Undo |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,--------------.       ,--------------.
  *                                        |Sh/Esc|   Up  |      | Cut  |Ctrl/Tab|
@@ -46,11 +50,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // right hand
              KC_MPLY,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
              KC_MNXT,    KC_J,   KC_L,   KC_U,   KC_Y,   KC_SCLN,          KC_EQL,
-                          KC_H,   KC_N,   KC_E,   KC_I,   KC_O,             KC_BSLS,
+                          KC_H,   TD(TD_N_COLN),   KC_E,   KC_I,   KC_O,             KC_BSLS,
              KC_MPRV,KC_K,   KC_M,   KC_COMM,KC_DOT, CTL_T(KC_SLSH),       KC_QUOT,
-                                  KC_LBRC,KC_RBRC,KC_LPRN,KC_RPRN,          KC_UNDO,
+                                  KC_LEFT,KC_DOWN,KC_UP,KC_RGHT,          M(5),
              M(2),      CTL_T(KC_TAB),
-             M(3),
+            M(3),
              M(4),    KC_ENT, KC_SPC
     ),
 /* Keymap 1: Symbol Layer
@@ -209,6 +213,14 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           unregister_code(KC_V);
         }
         break;
+        case 5:
+        if (record->event.pressed) {
+          register_code(KC_LGUI);
+          register_code(KC_U);
+          unregister_code(KC_LGUI);
+          unregister_code(KC_U);
+        }
+        break;
       }
     return MACRO_NONE;
 };
@@ -240,3 +252,10 @@ void matrix_scan_user(void) {
     }
 
 };
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  //Tap once for n, twice for colon
+  [TD_N_COLN]  = ACTION_TAP_DANCE_DOUBLE(KC_N, KC_COLN)
+};
+
+
