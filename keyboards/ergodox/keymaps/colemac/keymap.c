@@ -216,9 +216,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         case 5:
         if (record->event.pressed) {
           register_code(KC_LGUI);
-          register_code(KC_U);
+          register_code(KC_Z);
           unregister_code(KC_LGUI);
-          unregister_code(KC_U);
+          unregister_code(KC_Z);
         }
         break;
       }
