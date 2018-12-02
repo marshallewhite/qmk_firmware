@@ -1,6 +1,5 @@
-#include "ergodox.h"
-#include "debug.h"
-#include "action_layer.h"
+#include QMK_KEYBOARD_H
+#include "version.h"
 
 #define PRG 0 // Programming layer
 
@@ -27,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
-    [PRG] = KEYMAP(  // layer PRG: default
+    [PRG] = LAYOUT_ergodox(  // layer PRG: default
         // left hand
         KC_GRV,        KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_NO,
         KC_TAB,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   KC_NO,
@@ -47,43 +46,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LPRN,
         KC_RPRN,KC_ENT, KC_SPC
     ),
-};
-
-const uint16_t PROGMEM fn_actions[] = {
-    
-};
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-    return MACRO_NONE;
-};
-
-
-// Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
-
-};
-
-// Runs constantly in the background, in a loop.
-void matrix_scan_user(void) {
-
-    uint8_t layer = biton32(layer_state);
-
-    ergodox_board_led_off();
-    ergodox_right_led_1_off();
-    ergodox_right_led_2_off();
-    ergodox_right_led_3_off();
-    switch (layer) {
-      // TODO: Make this relevant to the ErgoDox EZ.
-        case 1:
-            ergodox_right_led_1_on();
-            break;
-        case 2:
-            ergodox_right_led_2_on();
-            break;
-        default:
-            // none
-            break;
-    }
-
 };
