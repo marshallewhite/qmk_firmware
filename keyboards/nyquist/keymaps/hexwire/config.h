@@ -15,13 +15,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#pragma once
+
+/* Use I2C or Serial, not both */
+
 #define USE_SERIAL
+// #define USE_I2C
+
+/* Select hand configuration */
+
+#define MASTER_LEFT
+// #define MASTER_RIGHT
+// #define EE_HANDS
 
 #define TAPPING_TERM 150
-
-#ifdef SUBPROJECT_rev1
-    #include "../../rev1/config.h"
-#endif
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
