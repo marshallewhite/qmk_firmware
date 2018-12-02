@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# make the ${1} ergodox keymap, place it in current directory
+docker run -e keymap=${1} -e keyboard=ergodox_ez --rm -v $('pwd'):/qmk:rw edasque/qmk_firmware
